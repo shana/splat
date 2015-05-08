@@ -6,6 +6,8 @@ namespace Splat
     {
         bool? InUnitTestRunner();
         bool? InDesignMode();
+
+        void SetInUnitTestRunner(bool flag);
     }
 
     public static class ModeDetector
@@ -15,17 +17,17 @@ namespace Splat
             try
             {
                 var platModeDetector = AssemblyFinder.AttemptToLoadType<IModeDetector>("Splat.PlatformModeDetector");
-                current = platModeDetector;
+                Current = platModeDetector;
             }
             catch
             { }
         }
 
-        static IModeDetector current { get; set; }
+        public static IModeDetector Current { get; private set; }
 
         public static void OverrideModeDetector(IModeDetector modeDetector)
         {
-            current = modeDetector;
+            Current = modeDetector;
             cachedInDesignModeResult = null;
             cachedInUnitTestRunnerResult = null;
         }
@@ -35,8 +37,8 @@ namespace Splat
         {
             if (cachedInUnitTestRunnerResult.HasValue) return cachedInUnitTestRunnerResult.Value;
 
-            if (current != null) {
-                cachedInUnitTestRunnerResult = current.InUnitTestRunner();
+            if (Current != null) {
+                cachedInUnitTestRunnerResult = Current.InUnitTestRunner();
                 if (cachedInUnitTestRunnerResult.HasValue) return cachedInUnitTestRunnerResult.Value;
             }
 
@@ -50,8 +52,8 @@ namespace Splat
         {
             if (cachedInDesignModeResult.HasValue) return cachedInDesignModeResult.Value;
 
-            if (current != null) {
-                cachedInDesignModeResult = current.InDesignMode();
+            if (Current != null) {
+                cachedInDesignModeResult = Current.InDesignMode();
                 if (cachedInDesignModeResult.HasValue) return cachedInDesignModeResult.Value;
             }
             
