@@ -21,7 +21,7 @@ namespace Splat
             if (Application.Current.MainWindow != null)
                 return System.ComponentModel.DesignerProperties.GetIsInDesignMode(Application.Current.MainWindow);
 
-            return false;
+            return System.ComponentModel.DesignerProperties.GetIsInDesignMode(new DependencyObject());
         }
     }
 }
