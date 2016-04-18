@@ -18,7 +18,7 @@ namespace Splat
 
         public bool? InDesignMode()
         {
-            if (Application.Current.MainWindow != null)
+            if (Application.Current?.MainWindow != null)
                 return System.ComponentModel.DesignerProperties.GetIsInDesignMode(Application.Current.MainWindow);
 
             return System.ComponentModel.DesignerProperties.GetIsInDesignMode(new DependencyObject());
