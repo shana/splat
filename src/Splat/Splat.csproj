@@ -1,6 +1,6 @@
 ﻿<Project Sdk="MSBuild.Sdk.Extras">
   <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFramework>net46</TargetFramework>
     <AssemblyName>Splat</AssemblyName>
     <RootNamespace>Splat</RootNamespace>
     <Authors>Paul Betts</Authors>
